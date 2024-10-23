@@ -10,4 +10,10 @@ export class AuthController{
     signin(){
         return this.authservice.signin();
     }
+
+
+    @Get("signup")
+    signup(){
+        return this.authservice.signup();
+    }
 }
