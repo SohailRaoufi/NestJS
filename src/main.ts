@@ -11,4 +11,5 @@ async function bootstrap() {
 }
 bootstrap();
 
+// Pipe Validation apply the validation to app.
 // whitelist remove the fileds we havent defined in our validation or DTO.
