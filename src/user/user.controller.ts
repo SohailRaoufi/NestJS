@@ -1,15 +1,15 @@
-import { Controller, Get, UseGuards, Req } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
-import { Request } from 'express';
+import { Controller, Get, UseGuards } from '@nestjs/common';
+import { JwtGuard } from 'src/auth/guard';
+import { GetUser } from 'src/auth/decorator';
+import { User } from '@prisma/client';
 
+// we must use a guard which check the token and let the request to come here
+@UseGuards(JwtGuard) // use AuthGuard from Passport js and gurad for jwt
 @Controller('users')
 export class UserController {
-    // we must a guard which check the token and let the request to come here
-    @UseGuards(AuthGuard("jwt")) // use AuthGuard from Passport js and gurad for jwt
     @Get("me")
-    getMe(@Req() Req:Request){
+    getMe(@GetUser() user:User){
         // the payload that goes to AuthGuard it will be appended to user request.
-        
-        return Req.user;
+        return user;
     }
 }
